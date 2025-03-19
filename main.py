@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 
-
 app = Flask(__name__)
 
 def result_calculate(size, lights, device):
@@ -15,27 +14,17 @@ def index():
 
 @app.route('/<size>')
 def lights(size):
-    return render_template(
-                            'lights.html', 
-                            size=size
-                           )
+    return render_template('lights.html', size=size)
 
 @app.route('/<size>/<lights>')
 def electronics(size, lights):
-    return render_template(
-                            'electronics.html',                           
-                            size = size, 
-                            lights = lights                           
-                           )
+    return render_template('electronics.html', size=size, lights=lights)
 
 @app.route('/<size>/<lights>/<device>')
 def end(size, lights, device):
     return render_template('end.html', 
-                            result=result_calculate(int(size),
-                                                    int(lights), 
-                                                    int(device)
-                                                    )
-                        )
+                           result=result_calculate(int(size), int(lights), int(device)))
+
 @app.route('/form')
 def form():
     return render_template('form.html')
@@ -50,7 +39,6 @@ def submit_form():
                            name=name,
                            email=email,
                            address=address,
-                           date=date
-                           )
+                           date=date)
 
 app.run(debug=True)
